@@ -5,5 +5,6 @@
         public int Id { get; set; }
         public string Name { get; set; }
         public string MgrName { get; set; }
+        public ICollection<Employee> Employees { get; set; }
     }
 }

@@ -17,6 +17,14 @@ namespace Eyouth_APIs
                 opt.UseSqlServer(builder.Configuration.GetConnectionString("conn"));
             });
 
+            builder.Services.AddCors(opts =>
+            {
+                opts.AddPolicy("policy1", conf =>
+                {
+                    conf.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader();
+                });
+            });
+
             builder.Services.AddControllers();
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
@@ -32,7 +40,8 @@ namespace Eyouth_APIs
             }
 
             app.UseAuthorization();
-
+            app.UseStaticFiles();
+            app.UseCors("policy1");
 
             app.MapControllers();
 
