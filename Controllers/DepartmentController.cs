@@ -1,5 +1,6 @@
 ﻿using Eyouth_APIs.DTOs;
 using Eyouth_APIs.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -51,8 +52,9 @@ namespace Eyouth_APIs.Controllers
             return Ok(dept);
         }
 
-       
+
         [HttpPost]
+        [Authorize]
         public IActionResult Create(Department dept)
         {
             if (ModelState.IsValid)
